@@ -1,0 +1,16 @@
+td,th{
+    border: 2px solid seagreen; 
+    padding: 10px 5px;
+}
+table{
+    width: 20%;
+    border: 2px solid seagreen;
+    background-color:wheat;
+}
+td{
+    text-align: left;
+    
+}
+td.no{
+    text-align: center;
+}
