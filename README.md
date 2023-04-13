@@ -1,2 +1,2 @@
 # LacoMart
-## UTS Project Mata Kuliah Pemrograman Web 2
+UTS Project Mata Kuliah Pemrograman Web 2
