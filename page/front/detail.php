@@ -1,6 +1,9 @@
 <?php
 
 require_once "../../assets/script/dbkoneksi.php";
+if(!isset($_GET['id'])){
+    header('location:../../index.php');
+}
 
 $id = $_GET['id'];
 $query = mysqli_query($koneksi, "SELECT * FROM produk WHERE id = '$id'");

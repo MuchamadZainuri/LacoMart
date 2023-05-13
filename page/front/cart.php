@@ -10,7 +10,7 @@ $query2 = mysqli_query($koneksi, $sql2);
 $sql3 = "SELECT * FROM produk ORDER BY RAND() LIMIT 4";
 $query3 = mysqli_query($koneksi, $sql3);
 
-$sql1 = "SELECT * FROM pesanan";
+$sql1 = "SELECT * FROM pesanan order by id desc";
 $query1 = mysqli_query($koneksi, $sql1);;
 
 

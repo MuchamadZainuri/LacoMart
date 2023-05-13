@@ -16,6 +16,8 @@ if (isset($_GET['vw'])) {
     $row2 = mysqli_fetch_assoc($sql);
     $nama_produk = $row2['nama'];
     $gambar = $row2['img'];
+}else{
+    header('location: index.php');
 }
 ?>
 

@@ -2,10 +2,6 @@
 
 include '../../../assets/script/dbkoneksi.php';
 
-$id = '';
-$nama = '';
-
-
 if (isset($_GET['ed'])) {
     $id = $_GET['ed'];
     $sql = "SELECT * FROM kategori_produk WHERE id='$id'";
@@ -14,6 +10,9 @@ if (isset($_GET['ed'])) {
 
     $id = $row['id'];
     $nama = $row['nama'];
+}else{
+    $id = '';
+    $nama = '';
 }
 
 ?>
