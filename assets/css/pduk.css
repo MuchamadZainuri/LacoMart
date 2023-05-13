@@ -1,4 +1,4 @@
-.text-center> a{
+.text-center>a {
     margin: 0 2px;
 }
 
@@ -26,3 +26,4 @@
 .input:focus {
     border: 2px solid grey;
 }
+

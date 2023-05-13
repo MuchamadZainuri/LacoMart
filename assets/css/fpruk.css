@@ -1,0 +1,62 @@
+.card-beda {
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 255, .2);
+    transition: all .2s;
+    box-shadow: 15px 13px 2px 4px rgba(55, 50, 98, 0.2);
+}
+
+.card-beda:hover {
+    box-shadow: -15px 13px 2px -4px rgba(55, 50, 98, 0.2);
+}
+
+.img-thumbs {
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+}
+
+.img-thumbs-hidden {
+    display: none;
+}
+
+.wrapper-thumb {
+    position: relative;
+    display: inline-block;
+    margin: 1rem 0;
+    justify-content: space-around;
+}
+
+.img-preview-thumb {
+    background: #fff;
+    border: 1px solid none;
+    border-radius: 0.25rem;
+    box-shadow: 0.125rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.12);
+    margin-right: 1rem;
+    max-width: 140px;
+    padding: 0.25rem;
+}
+
+.remove-btn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .7rem;
+    top: -5px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    box-shadow: 0px 0px 3px grey;
+    transition: all .3s ease-in-out;
+}

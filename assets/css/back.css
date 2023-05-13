@@ -1,7 +1,32 @@
-h3.keren{
-    color: #fff;
-    font-size: 20px;
+div.tgl{
+    margin-top: -4px;
+    font-size: 1.5ch ;
 }
-* a {
-    text-decoration: none;
+.cards{
+    font-size: 1.6ch;
+}
+div.tglkanan{
+    margin-top: 4.8vh;
+    background-color: #f1f2f3;
+    padding: 10px 2px; 
+    border-radius: 8px;
+}
+p.text-dashboard{
+    font-size:2ch;
+}
+.buton1 {
+    background-color: #102570d4;
+    color: white;
+}
+.buton1:hover {
+    background-color: #1f337b;
+    color: white;
+}
+div.card-body > h2 {
+    font-size: 2.2ch;
+}
+button.btn-search{
+    color: white;
+    border-color : #6c7993;
+    background-color: #6c7993;
 }
