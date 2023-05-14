@@ -27,6 +27,9 @@ $query1 = mysqli_query($koneksi, $sql1);;
     <title>LacoMart - Keranjang</title>
     <link rel="shortcut icon" href="../../assets/images/icon2.svg" type="image/x-icon" sizes="42x42">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/cart.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
@@ -296,12 +299,10 @@ $query1 = mysqli_query($koneksi, $sql1);;
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5>Kritik & Saran</h5>
-                        <form action="../../page/back/index.php">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-2" placeholder="Silahkan Ketikan...">
-                                <button class="btn btn-secondary">Kirim</button>
-                            </div>
-                        </form>
+                        <div class="input-group">
+                            <input type="text" class="form-control p-2" placeholder="Silahkan Ketikan...">
+                            <button class="btn btn-secondary admin">Kirim</button>
+                        </div>
                         <h5 class="mt-4">Ikuti Kami</h5>
                         <div class="d-flex">
                             <a class="btn btn-secondary btn-lg-square rounded-circle me-2 mt-1s" href="https://www.linkedin.com/in/muchamad-zainuri-a54a09251" target="_blank">
@@ -340,8 +341,36 @@ $query1 = mysqli_query($koneksi, $sql1);;
                 button1.classList.add('active');
             });
         }
+        $(document).on('click', '.admin', function() {
+            Swal.fire({
+                title: 'Masuk Sebagai Admin',
+                input: 'text',
+                inputLabel: 'Password: admin',
+                inputPlaceholder: 'Password',
+                showCancelButton: true
+            }).then((result) => {
+                if (result.value == "admin") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Anda Berhasil Masuk Sebagai Admin!',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "../back/index.php";
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal Masuk',
+                        text: 'Password Salah!',
+                    })
+                }
+            })
+        })
     </script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </html>

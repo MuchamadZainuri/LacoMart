@@ -261,7 +261,7 @@ $sale = $row['jumlah'];
                                         $no = 1;
                                         $query = mysqli_query($koneksi, "SELECT * FROM produk order by id desc limit 5;");
                                         ?>
-                                        <table class="table table-bordered table-hover">
+                                        <table class="table table-bordered table-hover" id="datatablesSimple">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">No</th>
