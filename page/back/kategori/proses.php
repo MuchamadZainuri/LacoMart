@@ -1,6 +1,5 @@
 <?php
 include '../../../assets/script/dbkoneksi.php';
-
 if (isset($_POST['act'])){
     if($_POST['act'] == 'create'){
         $nama = $_POST['nama_kategori'];
@@ -22,7 +21,7 @@ if (isset($_POST['act'])){
             echo "Gagal";
         }
     }
-}
+} 
 if (isset($_GET['dl'])){
     $id = $_GET['dl'];
     $sql = "DELETE FROM kategori_produk WHERE id='$id'";
@@ -33,4 +32,7 @@ if (isset($_GET['dl'])){
         echo "Gagal";
     }
 }
-?>
+
+if (!isset($_GET['dl']) && !isset($_POST['create']) && !isset($_POST['edit'])) {
+    header('location: index.php');
+}

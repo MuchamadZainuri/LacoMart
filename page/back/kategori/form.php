@@ -10,7 +10,7 @@ if (isset($_GET['ed'])) {
 
     $id = $row['id'];
     $nama = $row['nama'];
-}else{
+} else {
     $id = '';
     $nama = '';
 }
@@ -30,6 +30,9 @@ if (isset($_GET['ed'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="../../../assets/css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/fkduk.css">
 </head>
 
@@ -75,7 +78,7 @@ if (isset($_GET['ed'])) {
                     <br>
                     <br>
                     <div class="card-body">
-                        <form method="post" action="proses.php">
+                        <form id="sweet" method="post" action="proses.php">
                             <input type="hidden" value="<?= $id ?>" name="id">
                             <div class="form-group">
                                 <div class="input-group" style="display: flex;justify-content: center;">
@@ -89,7 +92,8 @@ if (isset($_GET['ed'])) {
                                     <?php
                                     if (isset($_GET['ed'])) {
                                     ?>
-                                        <button name="act" value="edit" type="submit" class="btn btn-primary">
+                                        <input type="hidden" name="act" value="edit">
+                                        <button type="submit" class="btn btn-primary ubahButton">
                                             <i class="fas fa-floppy-disk"> </i>
                                             Save</button>
 
@@ -99,7 +103,8 @@ if (isset($_GET['ed'])) {
                                     <?php
                                     } else {
                                     ?>
-                                        <button name="act" value="create" type="submit" class="btn btn-primary">
+                                        <input type="hidden" name="act" value="create">
+                                        <button type="submit" class="btn btn-primary submitButton">
                                             <i class="fas fa-file-circle-plus"></i>
                                             Create</button>
                                         <a href="index.php" class="btn btn-danger">
@@ -127,6 +132,27 @@ if (isset($_GET['ed'])) {
             </div>
         </footer>
     </div>
+    <script>
+        document.querySelector('#sweet').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const submitButtonClass = event.submitter.className;
+            if (submitButtonClass === 'btn btn-primary submitButton') {
+                var text = 'Data berhasil ditambahkan';
+            } else if (submitButtonClass === 'btn btn-primary ubahButton') {
+                var text = 'Data berhasil diubah';
+            }
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: text,
+                showConfirmButton: false,
+                timer: 2000
+            }).then(function() {
+                event.target.submit();
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

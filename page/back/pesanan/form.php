@@ -30,6 +30,9 @@ if (isset($_GET['id'])) {
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="../../../assets/css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/fpruk.css">
 
 </head>
@@ -77,7 +80,7 @@ if (isset($_GET['id'])) {
                             <h5>Kelola Pesanan</h5>
                         </div>
                         <div class="card-body px-4">
-                            <form method="POST" action="proses.php">
+                            <form method="POST" action="proses.php" id="sweet">
                                 <input type="hidden" name="id" value="<?= $id ?>">
                                 <div class="form-group row">
                                     <label for="tgl_pesan" class="col-4 col-form-label">Tanggal</label>
@@ -89,9 +92,9 @@ if (isset($_GET['id'])) {
                                                 </div>
                                             </div>
                                             <?php
-                                            
+
                                             ?>
-                                            <input id="tgl_pesan" name="tgl_pesan" type="text" class="form-control" value="<?= $tanggal?>">
+                                            <input id="tgl_pesan" name="tgl_pesan" type="text" class="form-control" value="<?= $tanggal ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +107,7 @@ if (isset($_GET['id'])) {
                                                     <i class="fa-solid fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input id="nama" name="nama" type="text" class="form-control" value="<?=$nama?>">
+                                            <input id="nama" name="nama" type="text" class="form-control" value="<?= $nama ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +153,8 @@ if (isset($_GET['id'])) {
                                 </div>
                                 <div class="form-group row">
                                     <div class="offset-4 col-8">
-                                        <button name="edit" type="submit" class="btn btn-primary">
+                                        <input type="hidden" name="edit">
+                                        <button type="submit" class="btn btn-primary ubahButton">
                                             <i class="fas fa-file-circle-plus"></i>
                                             Save
                                         </button>
@@ -180,6 +184,27 @@ if (isset($_GET['id'])) {
             </div>
         </footer>
     </div>
+    <script>
+        document.querySelector('#sweet').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const submitButtonClass = event.submitter.className;
+            if (submitButtonClass === 'btn btn-primary submitButton') {
+                var text = 'Data berhasil ditambahkan';
+            } else if (submitButtonClass === 'btn btn-primary ubahButton') {
+                var text = 'Data berhasil diubah';
+            }
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: text,
+                showConfirmButton: false,
+                timer: 2000
+            }).then(function() {
+                event.target.submit();
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <script src="../../../assets/script/fpruk.js"></script>
 </body>
 

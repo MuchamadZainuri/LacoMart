@@ -15,6 +15,9 @@ $query = mysqli_query($koneksi, "SELECT * FROM kategori_produk;");
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../../../assets/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/kduk.css">
 </head>
 
@@ -134,7 +137,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM kategori_produk;");
                                                 <a href="form.php?ed=<?= $row['id'] ?>" class="btn btn-warning">
                                                     <i class="fas fa-edit"> </i>
                                                 </a>
-                                                <a href="proses.php?dl=<?= $row['id'] ?>" class="btn btn-danger">
+                                                <a href="proses.php?dl=<?= $row['id'] ?>" class="btn btn-danger delete">
                                                     <i class="fas fa-trash"> </i>
                                                 </a>
                                             </td>
@@ -157,6 +160,34 @@ $query = mysqli_query($koneksi, "SELECT * FROM kategori_produk;");
             </footer>
         </div>
     </div>
+    <script>
+        $(document).on('click', '.delete', function(e) {
+            e.preventDefault();
+            var link = $(this).attr('href');
+            Swal.fire({
+                title: 'Yakin ingin menghapus data ini?',
+                text: "Yakin Dek? gak bisa di undo loh!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '<i class="fas fa-trash"></i> Hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Data berhasil dihapus.',
+                        'success'
+                    ).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = link;
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../../../assets/script/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>

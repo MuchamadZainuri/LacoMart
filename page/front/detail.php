@@ -1,7 +1,7 @@
 <?php
 
 require_once "../../assets/script/dbkoneksi.php";
-if(!isset($_GET['id'])){
+if (!isset($_GET['id'])) {
     header('location:../../index.php');
 }
 
@@ -25,6 +25,9 @@ $data = mysqli_fetch_assoc($query);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/detail.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
 
 </head>
 
@@ -72,7 +75,7 @@ $data = mysqli_fetch_assoc($query);
         </div>
     </nav>
     <section>
-        <div class="container">
+        <div class="container py-4">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row mb-4">
@@ -166,7 +169,7 @@ $data = mysqli_fetch_assoc($query);
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Pesan Produk</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="POST" action="../back/pesanan/proses.php">
+                        <form method="POST" action="../back/pesanan/proses.php" id="sweet">
                             <input type="hidden" name="id_produk" value="<?= $id ?>">
                             <div class="text-end pt-2">
                                 <input type="text" id="tanggal" name="tanggal" value="<?php echo date('d-m-Y'); ?>" readonly class="text-muted" style="border-style:none; color: #000; width:90pt;cursor: no-drop;font-weight: bold;">
@@ -231,7 +234,8 @@ $data = mysqli_fetch_assoc($query);
                                     <span class="fs-3 text-muted fw-bold" id="total"> <?= "Rp" . " " . $harga ?></span>
                                 </div>
                                 <div class="col-3 text-start ps-4">
-                                    <button name="create" type="submit" class="btn btn-success px-3 py-2">Checkout &nbsp;<i class="bi bi-cash-stack"></i></button>
+                                    <input type="hidden" name="create">
+                                    <button type="submit" class="btn btn-success px-3 py-2 simpan">Checkout &nbsp;<i class="bi bi-cash-stack"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -270,12 +274,10 @@ $data = mysqli_fetch_assoc($query);
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5>Kritik & Saran</h5>
-                        <form action="../../page/back/index.php">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-2" placeholder="Silahkan Ketikan...">
-                                <button class="btn btn-secondary">Kirim</button>
-                            </div>
-                        </form>
+                        <div class="input-group">
+                            <input type="text" class="form-control p-2" placeholder="Silahkan Ketikan...">
+                            <button class="btn btn-secondary input">Kirim</button>
+                        </div>
                         <h5 class="mt-4">Ikuti Kami</h5>
                         <div class="d-flex">
                             <a class="btn btn-secondary btn-lg-square rounded-circle me-2 mt-1s" href="https://www.linkedin.com/in/muchamad-zainuri-a54a09251" target="_blank">
@@ -327,7 +329,47 @@ $data = mysqli_fetch_assoc($query);
                 document.getElementById("total").innerHTML = format;
             }
         }
+        $(document).on('click', '.input', function() {
+            Swal.fire({
+                title: 'Masuk Sebagai Admin',
+                input: 'text',
+                inputLabel: 'Password: admin',
+                inputPlaceholder: 'Password',
+                showCancelButton: true
+            }).then((result) => {
+                if (result.value == "admin") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Anda Berhasil Masuk Sebagai Admin!',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "../back/index.php";
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal Masuk',
+                        text: 'Password Salah!',
+                    })
+                }
+            })
+        })
+        document.querySelector('#sweet').addEventListener('submit', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: 'Pesanan Anda Akan Segera Kami Proses!',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(function() {
+                event.target.submit();
+            });
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 

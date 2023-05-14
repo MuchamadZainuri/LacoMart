@@ -46,3 +46,6 @@ if (isset($_GET['dl'])){
         echo "Gagal";
     }
 }
+if(!isset($_GET['dl']) && !isset($_POST['create']) && !isset($_POST['edit'])){
+    header('location: index.php');
+}
